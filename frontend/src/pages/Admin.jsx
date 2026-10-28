@@ -113,17 +113,17 @@ export default function Admin() {
                 return (
                   <tr
                     key={id || i}
-                    className={`border-b border-amber-100 ${i % 2 === 0 ? 'bg-card' : 'bg-paper'} ${isDirty ? 'ring-1 ring-inset ring-marigold' : ''}`}
+                    className={`border-b border-slate-100 hover:bg-slate-50/80 transition-colors ${isDirty ? 'bg-amber-50/40' : ''}`}
                   >
-                    <td className="px-4 py-3 font-medium text-ink-dark max-w-xs">
+                    <td className="px-4 py-3 font-semibold text-slate-800 max-w-xs">
                       <span className="line-clamp-2">{issue.title}</span>
                     </td>
-                    <td className="px-4 py-3 text-muted">{issue.location}</td>
+                    <td className="px-4 py-3 text-slate-600 text-xs">{issue.location}</td>
                     <td className="px-4 py-3">
                       <select
                         value={currentStatus}
                         onChange={(e) => handleStatusChange(id, e.target.value)}
-                        className="border-2 border-amber-300 bg-paper rounded px-2 py-1 text-xs focus:outline-none focus:border-marigold"
+                        className="border border-slate-300 bg-white rounded px-2.5 py-1 text-xs font-medium focus:outline-none focus:ring-1 focus:ring-blue-500 shadow-sm cursor-pointer"
                       >
                         {STATUSES.map((s) => (
                           <option key={s} value={s}>{STATUS_LABELS[s]}</option>
@@ -134,25 +134,25 @@ export default function Admin() {
                       {isDirty && (
                         <input
                           type="text"
-                          placeholder="Optional note..."
+                          placeholder="Resolution note..."
                           value={pending?.note || ''}
                           onChange={(e) => handleNoteChange(id, e.target.value)}
-                          className="w-full border border-amber-300 bg-paper rounded px-2 py-1 text-xs focus:outline-none focus:border-marigold"
+                          className="w-full border border-slate-300 bg-white rounded px-2.5 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-blue-500"
                         />
                       )}
                     </td>
-                    <td className="px-4 py-3 text-right text-muted">{issue.upvotes ?? 0}</td>
-                    <td className="px-4 py-3 text-muted text-xs">
+                    <td className="px-4 py-3 text-right font-semibold text-slate-700">{issue.vote_count ?? issue.upvotes ?? 0}</td>
+                    <td className="px-4 py-3 text-slate-400 text-xs">
                       {formatDate(issue.created_at || issue.createdAt)}
                     </td>
                     <td className="px-4 py-3 text-center">
                       {saved[id] ? (
-                        <span className="text-xs text-green-600 font-semibold">✓ Saved</span>
+                        <span className="text-xs text-emerald-600 font-semibold bg-emerald-50 px-2 py-0.5 rounded">✓ Saved</span>
                       ) : (
                         <button
                           onClick={() => handleSave(id, issue.status)}
                           disabled={!isDirty || saving[id]}
-                          className="text-xs bg-marigold text-white px-3 py-1 rounded font-semibold hover:bg-yellow-500 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                          className="text-xs bg-blue-600 text-white px-3 py-1 rounded font-semibold hover:bg-blue-700 transition-colors disabled:opacity-40 disabled:cursor-not-allowed shadow-sm"
                         >
                           {saving[id] ? '...' : 'Save'}
                         </button>

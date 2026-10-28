@@ -2,17 +2,25 @@ import { useNavigate } from 'react-router-dom'
 import StatusStamp from './StatusStamp'
 
 const CATEGORY_COLORS = {
-  Electrical: 'bg-yellow-100 text-yellow-800',
-  Plumbing: 'bg-blue-100 text-blue-800',
-  'Wi-Fi': 'bg-purple-100 text-purple-800',
-  Cleanliness: 'bg-green-100 text-green-800',
-  Furniture: 'bg-orange-100 text-orange-800',
-  Other: 'bg-stone-100 text-stone-600',
+  electrical: 'bg-amber-50 text-amber-800 border border-amber-200',
+  plumbing: 'bg-blue-50 text-blue-800 border border-blue-200',
+  wifi: 'bg-purple-50 text-purple-800 border border-purple-200',
+  'wi-fi': 'bg-purple-50 text-purple-800 border border-purple-200',
+  cleanliness: 'bg-emerald-50 text-emerald-800 border border-emerald-200',
+  furniture: 'bg-orange-50 text-orange-800 border border-orange-200',
+  other: 'bg-slate-100 text-slate-700 border border-slate-200',
+}
+
+function formatDate(dateStr) {
+  if (!dateStr) return ''
+  const d = new Date(dateStr)
+  return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
 }
 
 export default function IssueCard({ issue, index = 0 }) {
   const navigate = useNavigate()
-  const categoryColor = CATEGORY_COLORS[issue.category] || CATEGORY_COLORS.Other
+  const catKey = (issue.category || 'other').toLowerCase()
+  const categoryColor = CATEGORY_COLORS[catKey] || CATEGORY_COLORS.other
 
   return (
     <div

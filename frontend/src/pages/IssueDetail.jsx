@@ -140,9 +140,12 @@ export default function IssueDetail() {
                 <div className="absolute -left-[1.4rem] top-0.5 w-3 h-3 rounded-full bg-marigold border-2 border-amber-300" />
                 <div className="flex flex-wrap items-center gap-2 mb-0.5">
                   <StatusStamp status={update.status} />
-                  <span className="text-xs text-muted">{formatDate(update.timestamp)}</span>
+                  <span className="text-xs text-slate-400 font-medium">{formatDate(update.created_at || update.timestamp)}</span>
+                  {update.updated_by_name && (
+                    <span className="text-xs text-slate-500 font-semibold">• by {update.updated_by_name}</span>
+                  )}
                 </div>
-                {update.note && <p className="text-sm text-ink-dark">{update.note}</p>}
+                {update.note && <p className="text-sm text-slate-700 mt-1">{update.note}</p>}
               </li>
             ))}
           </ol>
@@ -150,7 +153,7 @@ export default function IssueDetail() {
       )}
 
       {/* Comments */}
-      <div className="bg-card border border-amber-200 rounded shadow-sm p-5">
+      <div className="bg-white border border-slate-200 rounded-lg shadow-sm p-6">
         <CommentSection issueId={id} />
       </div>
     </main>

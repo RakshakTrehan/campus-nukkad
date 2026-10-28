@@ -30,7 +30,7 @@ def list_issues(
     category: Optional[str] = Query(None),
     location: Optional[str] = Query(None),
     status_filter: Optional[str] = Query(None, alias="status"),
-    sort: str = Query("newest", pattern="^(newest|upvotes)$"),
+    sort: str = Query("newest", pattern="^(newest|upvotes|most_upvoted)$"),
     limit: int = Query(20, ge=1, le=100),
     offset: int = Query(0, ge=0),
     db: Session = Depends(get_db),
@@ -40,19 +40,19 @@ def list_issues(
     - category: filter by category
     - location: case-insensitive substring match
     - status: filter by status
-    - sort: 'newest' (default) | 'upvotes'
+    - sort: 'newest' (default) | 'upvotes' / 'most_upvoted'
     - limit/offset: pagination
     """
     q = db.query(models.Issue)
 
     if category:
-        q = q.filter(models.Issue.category == category)
+        q = q.filter(models.Issue.category.ilike(category.strip()))
     if location:
         q = q.filter(models.Issue.location.ilike(f"%{location}%"))
     if status_filter:
         q = q.filter(models.Issue.status == status_filter)
 
-    if sort == "upvotes":
+    if sort in ("upvotes", "most_upvoted"):
         q = q.order_by(models.Issue.vote_count.desc(), models.Issue.created_at.desc())
     else:
         q = q.order_by(models.Issue.created_at.desc())

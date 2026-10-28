@@ -10,7 +10,7 @@ export const createIssue = (data) =>
   client.post('/issues', data).then((r) => r.data)
 
 export const updateIssueStatus = (id, status, note = '') =>
-  client.patch(`/issues/${id}/status`, { status, note }).then((r) => r.data)
+  client.patch(`/admin/issues/${id}/status`, { status, note }).then((r) => r.data)
 
 export const voteIssue = (id) =>
   client.post(`/issues/${id}/vote`).then((r) => r.data)

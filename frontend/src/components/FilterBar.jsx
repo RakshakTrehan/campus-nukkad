@@ -2,17 +2,18 @@ const CATEGORIES = ['All', 'Electrical', 'Plumbing', 'Wi-Fi', 'Cleanliness', 'Fu
 
 export default function FilterBar({ activeCategory, setActiveCategory, sortBy, setSortBy }) {
   return (
-    <div className="flex flex-wrap items-center gap-2 mb-6">
+    <div className="flex flex-wrap items-center justify-between gap-4 mb-8 pb-4 border-b border-slate-200">
       {/* Category filters */}
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider mr-1">Filter:</span>
         {CATEGORIES.map((cat) => (
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className={`px-3 py-1 rounded-full text-sm font-medium border transition-all ${
+            className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all ${
               activeCategory === cat
-                ? 'bg-marigold text-white border-marigold shadow-sm'
-                : 'bg-card border-amber-300 text-ink-dark hover:border-marigold'
+                ? 'bg-blue-600 text-white shadow-sm'
+                : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900'
             }`}
           >
             {cat}
@@ -20,19 +21,16 @@ export default function FilterBar({ activeCategory, setActiveCategory, sortBy, s
         ))}
       </div>
 
-      {/* Spacer */}
-      <div className="flex-1" />
-
       {/* Sort */}
       <div className="flex items-center gap-2">
-        <span className="text-sm text-muted font-medium">Sort:</span>
+        <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Sort by:</span>
         <select
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value)}
-          className="text-sm border-2 border-amber-300 bg-card text-ink-dark rounded px-2 py-1 focus:outline-none focus:border-marigold"
+          className="text-xs font-semibold border border-slate-200 bg-white text-slate-800 rounded-md px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 shadow-sm cursor-pointer"
         >
-          <option value="newest">Newest</option>
-          <option value="most_upvoted">Most Upvoted</option>
+          <option value="newest">Most Recent</option>
+          <option value="upvotes">Most Upvoted</option>
         </select>
       </div>
     </div>

@@ -20,7 +20,7 @@ export default function UpvoteButton({ issueId, initialCount = 0, initialVoted =
     setLoading(true)
     try {
       const data = await voteIssue(issueId)
-      setCount(data.upvotes ?? (voted ? count - 1 : count + 1))
+      setCount(data.vote_count ?? data.upvotes ?? (voted ? count - 1 : count + 1))
       setVoted(data.voted ?? !voted)
     } catch {
       // Optimistic fallback
