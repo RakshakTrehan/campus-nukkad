@@ -43,21 +43,21 @@ export default function CommentSection({ issueId }) {
   }
 
   return (
-    <div className="mt-6">
-      <h3 className="font-kalam text-xl font-bold text-ink-dark mb-4">
-        💬 Comments {comments.length > 0 && `(${comments.length})`}
+    <div className="mt-8 pt-6 border-t border-slate-200">
+      <h3 className="font-heading text-lg font-bold text-slate-900 mb-4">
+        Discussion & Updates {comments.length > 0 && `(${comments.length})`}
       </h3>
 
       {loading ? (
-        <p className="text-muted text-sm">Loading comments...</p>
+        <p className="text-slate-400 text-sm">Loading comments...</p>
       ) : comments.length === 0 ? (
-        <p className="text-muted text-sm italic">No comments yet. Be the first to add one!</p>
+        <p className="text-slate-500 text-sm italic">No comments yet. Students and staff can post updates below.</p>
       ) : (
-        <div className="flex flex-col gap-3 mb-4">
+        <div className="flex flex-col gap-3 mb-6">
           {comments.map((c, i) => (
             <div
               key={c.id || c._id || i}
-              className="bg-card border border-amber-200 rounded p-3 shadow-sm"
+              className="bg-white border border-slate-200 rounded-lg p-3.5 shadow-sm"
             >
               <div className="flex items-center justify-between mb-1">
                 <span className="text-sm font-semibold text-ink-dark">

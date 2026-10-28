@@ -7,8 +7,10 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        kalam: ['Kalam', 'cursive'],
-        inter: ['Inter', 'sans-serif'],
+        sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        heading: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+        kalam: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+        inter: ['Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
         paper: '#F5F0E8',

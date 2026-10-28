@@ -102,39 +102,52 @@ export default function Home() {
   }, [activeCategory, sortBy])
 
   return (
-    <main className="max-w-6xl mx-auto px-4 py-8">
+    <main className="max-w-6xl mx-auto px-4 py-10">
       {/* Hero */}
-      <div className="text-center mb-8">
-        <h1 className="font-kalam text-5xl md:text-6xl font-bold text-ink-dark mb-3 select-none">
-          Campus Nukkad 📌
+      <div className="text-center mb-10">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold uppercase tracking-wider mb-4">
+          <span>Official Student & Facilities Portal</span>
+        </div>
+        <h1 className="font-heading text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-3">
+          Campus Nukkad
         </h1>
-        <p className="text-lg text-muted font-medium max-w-xl mx-auto mb-6">
-          Your campus corner — report it, upvote it, watch it get fixed.
+        <p className="text-base md:text-lg text-slate-600 font-normal max-w-xl mx-auto mb-8">
+          The central platform for transparent campus issue reporting, tracking, and student services.
         </p>
 
         {/* Stats bar */}
         {stats && (
-          <div className="inline-flex flex-wrap justify-center gap-4 bg-card border border-amber-200 rounded-full px-6 py-2 shadow-sm text-sm font-medium mb-6">
-            <span className="text-stamp-red font-bold">
-              ✅ {stats.fixed_this_month ?? stats.fixed ?? 0} fixed this month
-            </span>
-            <span className="text-muted">·</span>
-            <span className="text-stamp-orange font-bold">
-              ⚡ {stats.in_progress ?? 0} in progress
-            </span>
-            <span className="text-muted">·</span>
-            <span className="text-ink-dark font-bold">
-              🆕 {stats.new_today ?? 0} new today
-            </span>
+          <div className="inline-flex flex-wrap justify-center items-center gap-6 bg-white border border-slate-200 rounded-lg px-8 py-3 shadow-sm text-sm mb-8">
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+              <span className="text-slate-700 font-semibold">
+                {stats.fixed_this_month ?? stats.fixed ?? 0} Resolved This Month
+              </span>
+            </div>
+            <span className="text-slate-300">|</span>
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+              <span className="text-slate-700 font-semibold">
+                {stats.in_progress ?? 0} In Progress
+              </span>
+            </div>
+            <span className="text-slate-300">|</span>
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+              <span className="text-slate-700 font-semibold">
+                {stats.new_today ?? 0} Reported Today
+              </span>
+            </div>
           </div>
         )}
 
         <div>
           <Link
             to="/report"
-            className="inline-block bg-stamp-red text-white font-bold text-base px-6 py-3 rounded shadow-md hover:bg-red-700 transition-colors"
+            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm px-6 py-3 rounded-lg shadow-sm transition-all hover:shadow"
           >
-            📝 Report a Problem
+            <span>+</span>
+            <span>Submit Issue Report</span>
           </Link>
         </div>
       </div>
@@ -165,9 +178,9 @@ export default function Home() {
           ))}
         </div>
       ) : issues.length === 0 ? (
-        <div className="text-center py-16 text-muted">
-          <p className="font-kalam text-2xl mb-2">Nothing pinned here yet!</p>
-          <p className="text-sm">Be the first to report an issue.</p>
+        <div className="text-center py-16 text-slate-500">
+          <p className="font-heading text-xl font-semibold text-slate-700 mb-2">No issues logged yet</p>
+          <p className="text-sm">Be the first to submit a problem on campus.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -44,19 +44,20 @@ export default function MessPulse() {
     <main className="max-w-3xl mx-auto px-4 py-8">
       {/* Header */}
       <div className="text-center mb-8">
-        <h1 className="font-kalam text-4xl font-bold text-ink-dark mb-2">🍽 Mess Pulse</h1>
-        <p className="text-muted text-sm">Rate today's meals and see how they've been all week.</p>
+        <h1 className="font-heading text-3xl font-bold tracking-tight text-slate-900 mb-2">
+          Campus Mess Quality Index
+        </h1>
+        <p className="text-slate-500 text-sm">Real-time daily student feedback and weekly satisfaction trends for campus dining.</p>
       </div>
 
       {/* Today's ratings */}
-      <div className="bg-card border border-amber-200 rounded shadow-md p-6 mb-8 relative">
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-stamp-red shadow border border-red-700" />
-        <h2 className="font-kalam text-2xl font-bold text-ink-dark mb-6 mt-1">How's the food been today?</h2>
+      <div className="bg-white border border-slate-200 rounded-lg shadow-sm p-6 md:p-8 mb-8">
+        <h2 className="font-heading text-xl font-bold text-slate-900 mb-6">Rate Today's Meal Service</h2>
 
         <div className="flex flex-col gap-6">
           {MEALS.map((meal) => (
-            <div key={meal}>
-              <p className="text-sm font-semibold text-ink-dark mb-2">{meal}</p>
+            <div key={meal} className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 last:border-b-0">
+              <p className="text-sm font-semibold text-slate-800 mb-2 sm:mb-0">{meal}</p>
               <div className="flex items-center gap-2">
                 {STARS.map((star) => (
                   <button
@@ -70,7 +71,9 @@ export default function MessPulse() {
                   </button>
                 ))}
                 {submitted[meal] && (
-                  <span className="ml-2 text-xs text-green-600 font-semibold">✓ Rated {ratings[meal]}/5</span>
+                  <span className="ml-3 text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded font-semibold">
+                    ✓ Feedback Recorded ({ratings[meal]}/5)
+                  </span>
                 )}
               </div>
             </div>
@@ -79,8 +82,8 @@ export default function MessPulse() {
       </div>
 
       {/* Weekly chart */}
-      <div className="bg-card border border-amber-200 rounded shadow-md p-6">
-        <h2 className="font-kalam text-2xl font-bold text-ink-dark mb-4">📈 Weekly Average Ratings</h2>
+      <div className="bg-white border border-slate-200 rounded-lg shadow-sm p-6 md:p-8">
+        <h2 className="font-heading text-xl font-bold text-slate-900 mb-4">7-Day Dining Quality Trends</h2>
 
         {loadingChart ? (
           <div className="h-48 bg-amber-50 rounded animate-pulse" />

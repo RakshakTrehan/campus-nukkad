@@ -1,28 +1,24 @@
 /**
- * StatusStamp — rubber-stamp style status badge
- * Props: status (string)
+ * StatusStamp — formal college status badge
+ * Props: status (string), large (boolean)
  */
 export default function StatusStamp({ status, large = false }) {
   const config = {
     reported: {
       label: 'REPORTED',
-      color: 'text-stone-500 border-stone-400',
-      rotate: 'rotate(-1deg)',
+      color: 'text-slate-600 bg-slate-100 border-slate-300',
     },
     seen: {
-      label: '👁 SEEN',
-      color: 'text-stamp-blue border-stamp-blue',
-      rotate: 'rotate(1deg)',
+      label: 'SEEN 👁',
+      color: 'text-blue-700 bg-blue-50 border-blue-200',
     },
     in_progress: {
-      label: '⚡ IN PROGRESS',
-      color: 'text-stamp-orange border-stamp-orange',
-      rotate: 'rotate(-1.5deg)',
+      label: 'IN PROGRESS ⚡',
+      color: 'text-amber-700 bg-amber-50 border-amber-300',
     },
     fixed: {
-      label: '✓ FIXED',
-      color: 'text-stamp-red border-stamp-red',
-      rotate: 'rotate(1.5deg)',
+      label: 'RESOLVED ✓',
+      color: 'text-emerald-700 bg-emerald-50 border-emerald-300',
     },
   }
 
@@ -30,10 +26,9 @@ export default function StatusStamp({ status, large = false }) {
 
   return (
     <span
-      className={`inline-block font-mono font-bold uppercase tracking-widest border-2 rounded-sm ${
-        large ? 'text-sm px-3 py-1' : 'text-xs px-2 py-0.5'
+      className={`inline-flex items-center font-semibold uppercase tracking-wider border rounded ${
+        large ? 'text-xs px-3 py-1 font-bold' : 'text-[11px] px-2 py-0.5'
       } ${cfg.color}`}
-      style={{ transform: cfg.rotate, display: 'inline-block' }}
     >
       {cfg.label}
     </span>

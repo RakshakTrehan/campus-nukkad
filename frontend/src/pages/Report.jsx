@@ -48,9 +48,9 @@ export default function Report() {
   if (success) {
     return (
       <main className="max-w-lg mx-auto px-4 py-16 text-center">
-        <div className="bg-card border border-amber-200 rounded shadow-md p-8">
-          <p className="font-kalam text-3xl font-bold text-ink-dark mb-2">📌 Pinned!</p>
-          <p className="text-muted text-sm">Your issue has been reported. Redirecting...</p>
+        <div className="bg-white border border-slate-200 rounded-lg shadow-sm p-8">
+          <p className="font-heading text-2xl font-bold text-slate-900 mb-2">Report Logged Successfully</p>
+          <p className="text-slate-500 text-sm">Your issue has been submitted for campus review. Redirecting...</p>
         </div>
       </main>
     )
@@ -60,56 +60,55 @@ export default function Report() {
     <main className="max-w-lg mx-auto px-4 py-8">
       {/* Header */}
       <div className="text-center mb-8">
-        <h1 className="font-kalam text-4xl font-bold text-ink-dark mb-2">Report a Problem</h1>
-        <p className="text-muted text-sm">Pin it to the board so it gets noticed.</p>
+        <h1 className="font-heading text-3xl font-bold tracking-tight text-slate-900 mb-2">
+          Submit Issue Report
+        </h1>
+        <p className="text-slate-500 text-sm">Submit campus facility or maintenance issues for administrative review.</p>
       </div>
 
       {/* Form card */}
-      <div className="bg-card border border-amber-200 rounded shadow-md p-6 relative">
-        {/* Pin decoration */}
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-stamp-red shadow border border-red-700" />
-
-        <form onSubmit={handleSubmit} className="flex flex-col gap-5 mt-2">
+      <div className="bg-white border border-slate-200 rounded-lg shadow-sm p-6 md:p-8">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           {/* Title */}
           <div>
-            <label className="block text-sm font-semibold text-ink-dark mb-1">
-              Title <span className="text-stamp-red">*</span>
+            <label className="block text-sm font-semibold text-slate-800 mb-1">
+              Issue Title <span className="text-red-500">*</span>
             </label>
             <input
               name="title"
               value={form.title}
               onChange={handleChange}
               type="text"
-              placeholder="e.g. Fan in Hostel B broken since Monday"
-              className="w-full border-2 border-amber-300 bg-paper rounded px-3 py-2 text-sm text-ink-dark focus:outline-none focus:border-marigold"
+              placeholder="e.g. Wi-Fi down in Library East Wing"
+              className="w-full border border-slate-300 bg-slate-50 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600"
               required
             />
           </div>
 
           {/* Description */}
           <div>
-            <label className="block text-sm font-semibold text-ink-dark mb-1">
-              Description <span className="text-stamp-red">*</span>
+            <label className="block text-sm font-semibold text-slate-800 mb-1">
+              Detailed Description <span className="text-red-500">*</span>
             </label>
             <textarea
               name="description"
               value={form.description}
               onChange={handleChange}
               rows={4}
-              placeholder="Describe the problem in detail..."
-              className="w-full border-2 border-amber-300 bg-paper rounded px-3 py-2 text-sm text-ink-dark focus:outline-none focus:border-marigold resize-none"
+              placeholder="Describe the issue in detail, including affected areas..."
+              className="w-full border border-slate-300 bg-slate-50 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 resize-none"
               required
             />
           </div>
 
           {/* Category */}
           <div>
-            <label className="block text-sm font-semibold text-ink-dark mb-1">Category</label>
+            <label className="block text-sm font-semibold text-slate-800 mb-1">Category</label>
             <select
               name="category"
               value={form.category}
               onChange={handleChange}
-              className="w-full border-2 border-amber-300 bg-paper rounded px-3 py-2 text-sm text-ink-dark focus:outline-none focus:border-marigold"
+              className="w-full border border-slate-300 bg-slate-50 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600"
             >
               {CATEGORIES.map((c) => (
                 <option key={c} value={c}>{c}</option>
@@ -119,25 +118,25 @@ export default function Report() {
 
           {/* Location */}
           <div>
-            <label className="block text-sm font-semibold text-ink-dark mb-1">
-              Location <span className="text-stamp-red">*</span>
+            <label className="block text-sm font-semibold text-slate-800 mb-1">
+              Location / Building <span className="text-red-500">*</span>
             </label>
             <input
               name="location"
               value={form.location}
               onChange={handleChange}
               type="text"
-              placeholder="e.g. Hostel B, Room 214"
-              className="w-full border-2 border-amber-300 bg-paper rounded px-3 py-2 text-sm text-ink-dark focus:outline-none focus:border-marigold"
+              placeholder="e.g. Hostel B, Room 214 or Block C 2nd Floor"
+              className="w-full border border-slate-300 bg-slate-50 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600"
               required
             />
           </div>
 
           {/* Photo URL */}
           <div>
-            <label className="block text-sm font-semibold text-ink-dark mb-1">
+            <label className="block text-sm font-semibold text-slate-800 mb-1">
               Photo URL{' '}
-              <span className="text-muted font-normal">(optional)</span>
+              <span className="text-slate-400 font-normal">(optional)</span>
             </label>
             <input
               name="photo_url"
@@ -145,13 +144,13 @@ export default function Report() {
               onChange={handleChange}
               type="url"
               placeholder="https://..."
-              className="w-full border-2 border-amber-300 bg-paper rounded px-3 py-2 text-sm text-ink-dark focus:outline-none focus:border-marigold"
+              className="w-full border border-slate-300 bg-slate-50 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600"
             />
           </div>
 
           {/* Error */}
           {error && (
-            <p className="text-stamp-red text-sm border border-red-200 bg-red-50 rounded px-3 py-2">
+            <p className="text-red-600 text-sm border border-red-200 bg-red-50 rounded-lg px-3 py-2">
               {error}
             </p>
           )}
@@ -160,9 +159,9 @@ export default function Report() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-marigold text-white font-bold text-base py-3 rounded shadow-md hover:bg-yellow-500 transition-colors disabled:opacity-60 mt-1"
+            className="w-full bg-blue-600 text-white font-semibold text-sm py-3 rounded-lg shadow-sm hover:bg-blue-700 transition-colors disabled:opacity-60 mt-2"
           >
-            {loading ? 'Pinning...' : '📌 Pin This Issue'}
+            {loading ? 'Submitting Report...' : 'Submit Official Report'}
           </button>
         </form>
       </div>

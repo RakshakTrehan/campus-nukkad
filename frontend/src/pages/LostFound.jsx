@@ -67,30 +67,31 @@ export default function LostFound() {
       {/* Header */}
       <div className="flex items-start justify-between mb-8 flex-wrap gap-4">
         <div>
-          <h1 className="font-kalam text-4xl font-bold text-ink-dark mb-1">Lost &amp; Found 🔍</h1>
-          <p className="text-muted text-sm">Found something? Missed something? Put it on the board.</p>
+          <h1 className="font-heading text-3xl font-bold tracking-tight text-slate-900 mb-1">
+            Campus Lost &amp; Found
+          </h1>
+          <p className="text-slate-500 text-sm">Official student directory for lost, misplaced, or retrieved items on campus.</p>
         </div>
         <button
           onClick={() => setShowForm(!showForm)}
-          className="bg-marigold text-white font-bold px-4 py-2 rounded shadow hover:bg-yellow-500 transition-colors text-sm"
+          className="bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg shadow-sm hover:bg-blue-700 transition-colors text-sm"
         >
-          {showForm ? '✕ Cancel' : '📦 Found Something?'}
+          {showForm ? '✕ Close Form' : '+ Report Found Item'}
         </button>
       </div>
 
       {/* Found item form */}
       {showForm && (
-        <div className="bg-card border border-amber-200 rounded shadow-md p-5 mb-8 relative -rotate-1">
-          <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-marigold shadow border border-yellow-500" />
-          <h2 className="font-kalam text-xl font-bold text-ink-dark mb-4 mt-1">Post a Found Item</h2>
+        <div className="bg-white border border-slate-200 rounded-lg shadow-sm p-6 mb-8">
+          <h2 className="font-heading text-xl font-bold text-slate-900 mb-4">Register Retrieved Property</h2>
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <input
               name="item_name"
               value={form.item_name}
               onChange={handleChange}
               type="text"
-              placeholder="Item name *"
-              className="border-2 border-amber-300 bg-paper rounded px-3 py-2 text-sm text-ink-dark focus:outline-none focus:border-marigold"
+              placeholder="Item name (e.g. Blue Wildcraft Backpack) *"
+              className="border border-slate-300 bg-slate-50 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600"
               required
             />
             <textarea
@@ -99,7 +100,7 @@ export default function LostFound() {
               onChange={handleChange}
               rows={2}
               placeholder="Description (colour, markings, etc.)"
-              className="border-2 border-amber-300 bg-paper rounded px-3 py-2 text-sm text-ink-dark focus:outline-none focus:border-marigold resize-none"
+              className="border border-slate-300 bg-slate-50 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 resize-none"
             />
             <input
               name="location_found"
@@ -107,16 +108,16 @@ export default function LostFound() {
               onChange={handleChange}
               type="text"
               placeholder="Where did you find it? *"
-              className="border-2 border-amber-300 bg-paper rounded px-3 py-2 text-sm text-ink-dark focus:outline-none focus:border-marigold"
+              className="border border-slate-300 bg-slate-50 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600"
               required
             />
-            {formError && <p className="text-stamp-red text-sm">{formError}</p>}
+            {formError && <p className="text-red-600 text-sm">{formError}</p>}
             <button
               type="submit"
               disabled={submitting}
-              className="bg-ink-dark text-paper font-bold py-2 rounded text-sm hover:bg-opacity-80 transition-colors disabled:opacity-60"
+              className="self-start bg-blue-600 text-white font-semibold px-5 py-2.5 rounded-lg text-sm hover:bg-blue-700 transition-colors disabled:opacity-60"
             >
-              {submitting ? 'Posting...' : '📌 Post to Board'}
+              {submitting ? 'Registering...' : 'Register Found Item'}
             </button>
           </form>
         </div>
@@ -126,13 +127,13 @@ export default function LostFound() {
       {loading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[...Array(4)].map((_, i) => (
-            <div key={i} className="bg-card rounded border border-amber-200 h-40 animate-pulse" />
+            <div key={i} className="bg-white rounded-lg border border-slate-200 h-40 animate-pulse" />
           ))}
         </div>
       ) : items.length === 0 ? (
-        <div className="text-center py-16 text-muted">
-          <p className="font-kalam text-2xl mb-2">Nothing here yet!</p>
-          <p className="text-sm">Post a found item using the button above.</p>
+        <div className="text-center py-16 text-slate-500">
+          <p className="font-heading text-lg font-semibold text-slate-700 mb-1">No items registered currently</p>
+          <p className="text-sm">Submit a found item using the button above.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

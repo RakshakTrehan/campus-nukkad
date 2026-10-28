@@ -10,63 +10,45 @@ const CATEGORY_COLORS = {
   Other: 'bg-stone-100 text-stone-600',
 }
 
-// Subtle tilt angles — alternating based on index
-const TILTS = ['-rotate-1', 'rotate-1', 'rotate-2', '-rotate-2', 'rotate-0']
-
-function formatDate(dateStr) {
-  if (!dateStr) return ''
-  const d = new Date(dateStr)
-  return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
-}
-
 export default function IssueCard({ issue, index = 0 }) {
   const navigate = useNavigate()
-  const tilt = TILTS[index % TILTS.length]
   const categoryColor = CATEGORY_COLORS[issue.category] || CATEGORY_COLORS.Other
 
   return (
     <div
       onClick={() => navigate(`/issues/${issue.id || issue._id}`)}
-      className={`
-        bg-card rounded shadow-md cursor-pointer
-        border border-amber-200 p-4
-        transition-all duration-200
-        hover:shadow-lg hover:scale-[1.02] hover:-translate-y-0.5
-        ${tilt}
-        relative
-      `}
+      className="bg-white rounded-lg shadow-sm border border-slate-200/90 p-5 cursor-pointer transition-all duration-200 hover:shadow-md hover:border-slate-400/80 hover:-translate-y-0.5 flex flex-col justify-between"
       style={{ minHeight: 160 }}
     >
-      {/* Pin decoration */}
-      <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-stamp-red shadow-sm border border-red-700 z-10" />
+      <div>
+        {/* Category badge & Status */}
+        <div className="flex items-start justify-between gap-2 mb-3">
+          <span className={`text-xs font-semibold px-2.5 py-1 rounded-md ${categoryColor}`}>
+            {issue.category || 'Other'}
+          </span>
+          <StatusStamp status={issue.status || 'reported'} />
+        </div>
 
-      {/* Category badge */}
-      <div className="flex items-start justify-between gap-2 mt-2 mb-2">
-        <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${categoryColor}`}>
-          {issue.category || 'Other'}
-        </span>
-        <StatusStamp status={issue.status || 'reported'} />
+        {/* Title */}
+        <h3 className="font-heading text-base font-semibold text-slate-900 mb-1.5 leading-snug line-clamp-2">
+          {issue.title}
+        </h3>
+
+        {/* Location */}
+        {issue.location && (
+          <p className="text-xs text-slate-500 mb-3 flex items-center gap-1.5 font-medium">
+            <span>📍</span>
+            <span className="line-clamp-1">{issue.location}</span>
+          </p>
+        )}
       </div>
 
-      {/* Title */}
-      <h3 className="font-kalam text-base font-bold text-ink-dark mb-1 leading-snug line-clamp-2">
-        {issue.title}
-      </h3>
-
-      {/* Location */}
-      {issue.location && (
-        <p className="text-xs text-muted mb-2 flex items-center gap-1">
-          <span>📍</span>
-          <span className="line-clamp-1">{issue.location}</span>
-        </p>
-      )}
-
       {/* Footer */}
-      <div className="flex items-center justify-between mt-auto pt-2 border-t border-amber-100">
-        <span className="text-xs text-muted">{formatDate(issue.created_at || issue.createdAt)}</span>
-        <span className="flex items-center gap-1 text-xs font-semibold text-muted">
-          <span>△</span>
-          <span>{issue.upvotes ?? 0}</span>
+      <div className="flex items-center justify-between pt-3 border-t border-slate-100 mt-2">
+        <span className="text-xs text-slate-400 font-medium">{formatDate(issue.created_at || issue.createdAt)}</span>
+        <span className="flex items-center gap-1.5 text-xs font-semibold text-slate-600 bg-slate-50 px-2 py-0.5 rounded border border-slate-200">
+          <span>▲</span>
+          <span>{issue.vote_count ?? issue.upvotes ?? 0}</span>
         </span>
       </div>
     </div>

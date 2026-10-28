@@ -14,19 +14,20 @@ export default function Navbar() {
   }
 
   const navLinkClass = ({ isActive }) =>
-    `font-medium text-sm transition-colors ${
-      isActive ? 'text-marigold underline' : 'text-ink-dark hover:text-marigold'
+    `font-medium text-sm transition-colors py-1 ${
+      isActive ? 'text-blue-600 font-semibold' : 'text-slate-600 hover:text-slate-900'
     }`
 
   return (
-    <nav className="sticky top-0 z-50 bg-paper border-b-2 border-amber-200 shadow-sm">
-      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200 shadow-sm">
+      <div className="max-w-6xl mx-auto px-4 py-3.5 flex items-center justify-between">
         {/* Logo */}
         <Link
           to="/"
-          className="font-kalam text-2xl font-bold text-ink-dark hover:text-marigold transition-colors select-none"
+          className="font-heading text-xl font-bold tracking-tight text-slate-900 hover:text-blue-700 transition-colors select-none flex items-center gap-2"
         >
-          📌 Campus Nukkad
+          <span className="text-blue-600">🏛</span>
+          <span>Campus Nukkad</span>
         </Link>
 
         {/* Desktop nav */}

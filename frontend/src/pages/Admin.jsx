@@ -77,28 +77,30 @@ export default function Admin() {
   return (
     <main className="max-w-6xl mx-auto px-4 py-8">
       <div className="mb-8">
-        <h1 className="font-kalam text-4xl font-bold text-ink-dark mb-1">🛠 Admin Dashboard</h1>
-        <p className="text-muted text-sm">Manage all reported issues and update their status.</p>
+        <h1 className="font-heading text-3xl font-bold tracking-tight text-slate-900 mb-1.5">
+          Campus Facilities Administration
+        </h1>
+        <p className="text-slate-500 text-sm">Review reported issues, update resolution milestones, and post administrative remarks.</p>
       </div>
 
       {loading ? (
         <div className="space-y-3">
           {[...Array(5)].map((_, i) => (
-            <div key={i} className="h-16 bg-card rounded border border-amber-200 animate-pulse" />
+            <div key={i} className="h-16 bg-white rounded-lg border border-slate-200 animate-pulse" />
           ))}
         </div>
       ) : (
-        <div className="overflow-x-auto rounded shadow-sm border border-amber-200">
+        <div className="overflow-x-auto rounded-lg shadow-sm border border-slate-200 bg-white">
           <table className="w-full text-sm">
-            <thead className="bg-amber-100 border-b border-amber-200">
+            <thead className="bg-slate-50 border-b border-slate-200">
               <tr>
-                <th className="text-left px-4 py-3 font-semibold text-ink-dark">Title</th>
-                <th className="text-left px-4 py-3 font-semibold text-ink-dark">Location</th>
-                <th className="text-left px-4 py-3 font-semibold text-ink-dark">Status</th>
-                <th className="text-left px-4 py-3 font-semibold text-ink-dark">Note</th>
-                <th className="text-right px-4 py-3 font-semibold text-ink-dark">Votes</th>
-                <th className="text-left px-4 py-3 font-semibold text-ink-dark">Date</th>
-                <th className="text-center px-4 py-3 font-semibold text-ink-dark">Save</th>
+                <th className="text-left px-4 py-3.5 font-semibold text-slate-700">Title</th>
+                <th className="text-left px-4 py-3.5 font-semibold text-slate-700">Location</th>
+                <th className="text-left px-4 py-3.5 font-semibold text-slate-700">Status</th>
+                <th className="text-left px-4 py-3.5 font-semibold text-slate-700">Official Note</th>
+                <th className="text-right px-4 py-3.5 font-semibold text-slate-700">Votes</th>
+                <th className="text-left px-4 py-3.5 font-semibold text-slate-700">Date</th>
+                <th className="text-center px-4 py-3.5 font-semibold text-slate-700">Action</th>
               </tr>
             </thead>
             <tbody>

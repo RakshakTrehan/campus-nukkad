@@ -64,8 +64,8 @@ export default function IssueDetail() {
   if (!issue) {
     return (
       <main className="max-w-2xl mx-auto px-4 py-10 text-center">
-        <p className="font-kalam text-2xl text-muted">Issue not found.</p>
-        <button onClick={() => navigate('/')} className="mt-4 text-stamp-blue underline text-sm">
+        <p className="font-heading text-xl font-semibold text-slate-700">Issue not found.</p>
+        <button onClick={() => navigate('/')} className="mt-4 text-blue-600 hover:underline text-sm font-medium">
           ← Back to Home
         </button>
       </main>
@@ -79,40 +79,37 @@ export default function IssueDetail() {
       {/* Back */}
       <button
         onClick={() => navigate(-1)}
-        className="text-sm text-muted hover:text-ink-dark mb-6 flex items-center gap-1 transition-colors"
+        className="text-sm font-medium text-slate-500 hover:text-slate-800 mb-6 flex items-center gap-1.5 transition-colors"
       >
         ← Back
       </button>
 
       {/* Main card */}
-      <div className="bg-card border border-amber-200 rounded shadow-md p-6 mb-6 relative">
-        {/* Pin */}
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-stamp-red shadow border border-red-700" />
-
+      <div className="bg-white border border-slate-200 rounded-lg shadow-sm p-6 md:p-8 mb-6">
         {/* Category + Status */}
-        <div className="flex flex-wrap items-center gap-3 mt-2 mb-4">
-          <span className="text-xs font-semibold bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full">
+        <div className="flex flex-wrap items-center gap-3 mb-4">
+          <span className="text-xs font-semibold bg-slate-100 text-slate-800 px-2.5 py-1 rounded">
             {issue.category}
           </span>
           <StatusStamp status={issue.status} large />
         </div>
 
         {/* Title */}
-        <h1 className="font-kalam text-2xl md:text-3xl font-bold text-ink-dark mb-3 leading-tight">
+        <h1 className="font-heading text-2xl md:text-3xl font-bold text-slate-900 mb-3 leading-tight tracking-tight">
           {issue.title}
         </h1>
 
         {/* Meta */}
-        <p className="text-sm text-muted mb-1 flex items-center gap-1">
+        <p className="text-sm text-slate-600 mb-1 flex items-center gap-1.5 font-medium">
           <span>📍</span> {issue.location}
         </p>
-        <p className="text-xs text-muted mb-4">
-          Reported on {formatDate(issue.created_at || issue.createdAt)}
+        <p className="text-xs text-slate-400 mb-5">
+          Reported by <span className="font-medium text-slate-600">{issue.author_name || 'Student'}</span> on {formatDate(issue.created_at || issue.createdAt)}
         </p>
 
         {/* Description */}
         {issue.description && (
-          <p className="text-sm text-ink-dark leading-relaxed mb-4 border-t border-amber-100 pt-3">
+          <p className="text-sm text-slate-700 leading-relaxed mb-6 border-t border-slate-100 pt-4">
             {issue.description}
           </p>
         )}
@@ -122,22 +119,22 @@ export default function IssueDetail() {
           <img
             src={issue.photo_url}
             alt="Issue photo"
-            className="w-full max-h-72 object-cover rounded border border-amber-200 mb-4"
+            className="w-full max-h-72 object-cover rounded-lg border border-slate-200 mb-6"
           />
         )}
 
         {/* Upvote */}
-        <div className="flex items-center gap-3">
-          <UpvoteButton issueId={id} initialCount={issue.upvotes ?? 0} initialVoted={issue.user_voted ?? false} />
-          <span className="text-xs text-muted">people agree this needs fixing</span>
+        <div className="flex items-center gap-3 pt-3 border-t border-slate-100">
+          <UpvoteButton issueId={id} initialCount={issue.vote_count ?? issue.upvotes ?? 0} initialVoted={issue.user_voted ?? false} />
+          <span className="text-xs text-slate-500 font-medium">students confirmed this issue</span>
         </div>
       </div>
 
       {/* Status timeline */}
       {statusUpdates.length > 0 && (
-        <div className="bg-card border border-amber-200 rounded shadow-sm p-5 mb-6">
-          <h2 className="font-kalam text-xl font-bold text-ink-dark mb-4">🗓 Status Timeline</h2>
-          <ol className="relative border-l-2 border-amber-300 ml-2 flex flex-col gap-5">
+        <div className="bg-white border border-slate-200 rounded-lg shadow-sm p-6 mb-6">
+          <h2 className="font-heading text-lg font-bold text-slate-900 mb-5">Official Resolution Timeline</h2>
+          <ol className="relative border-l-2 border-slate-200 ml-3 flex flex-col gap-6">
             {statusUpdates.map((update, i) => (
               <li key={i} className="ml-4 relative">
                 <div className="absolute -left-[1.4rem] top-0.5 w-3 h-3 rounded-full bg-marigold border-2 border-amber-300" />

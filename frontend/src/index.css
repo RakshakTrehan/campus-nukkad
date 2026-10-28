@@ -3,21 +3,22 @@
 @tailwind utilities;
 
 html, body, #root {
-  background-color: #F5F0E8;
-  font-family: 'Inter', sans-serif;
-  color: #1C1917;
+  background-color: #F8F9FA;
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #1E293B;
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Cork board texture pattern */
+/* Subtle clean institutional pattern */
 body::before {
   content: '';
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
   background-image:
-    radial-gradient(circle at 25% 25%, rgba(139,90,43,0.04) 1px, transparent 1px),
-    radial-gradient(circle at 75% 75%, rgba(139,90,43,0.04) 1px, transparent 1px);
-  background-size: 30px 30px;
+    radial-gradient(circle at 50% 50%, rgba(100, 116, 139, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
   pointer-events: none;
   z-index: 0;
 }
@@ -27,15 +28,15 @@ body::before {
   z-index: 1;
 }
 
-/* Stamp text utility */
+/* Stamp / Badge text utility */
 .stamp-text {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.65rem;
-  border-width: 2px;
+  letter-spacing: 0.06em;
+  font-size: 0.7rem;
+  border-width: 1.5px;
   border-style: solid;
-  padding: 1px 6px;
-  border-radius: 2px;
+  padding: 2px 8px;
+  border-radius: 4px;
 }
